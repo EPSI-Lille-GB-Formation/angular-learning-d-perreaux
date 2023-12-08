@@ -10,8 +10,10 @@ import { TODOS } from './mock-todo';
   template: `
   <h1>Liste des choses à faire</h1>
 
-  <ul *ngFor="let tache of todoList">
+  <ul >
+    <ng-container *ngFor="let tache of todoList">
     <li *ngIf="!tache.isCompleted">{{ tache.title }}</li>
+    </ng-container>
 
   </ul>
   `,
