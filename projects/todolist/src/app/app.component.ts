@@ -2,21 +2,17 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { TODOS } from './mock-todo';
-import { TodoListComponent } from "./todo-list/todo-list.component"
+import { TodoListComponent } from './components/todo-list/todo-list.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [CommonModule, RouterOutlet, TodoListComponent],
   template: `
-    <div class='container'>
-      <todo-list></todo-list>
+    <div class="container">
+      <router-outlet></router-outlet>
     </div>
   `,
-  styles: []
+  styles: [],
 })
-export class AppComponent {
-
-  
-
-}
+export class AppComponent {}
