@@ -8,7 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:todolist": "node dist/todolist/server/server.mjs",
-    "serve:ssr:sandbox": "node dist/sandbox/server/server.mjs"
+    "serve:ssr:sandbox": "node dist/sandbox/server/server.mjs",
+    "serve:ssr:BiblioTech": "node dist/biblio-tech/server/server.mjs"
   },
   "private": true,
   "dependencies": {
