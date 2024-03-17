@@ -61,7 +61,7 @@ export class TodoListComponent {
 
   ngOnInit() {
     this.todoService.getAllTodo().subscribe((data) => (this.todoList = data));
-    this.todoService.getTodoById(5).subscribe((todo) => console.log(todo));
+    this.todoService.getTodoById(5).subscribe((tada) => console.log(tada));
   }
 
   onClickViewNotCompletedTaks() {
