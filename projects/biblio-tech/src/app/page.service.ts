@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Page } from './app/page';
+import { Page } from './page';
 import { Observable, tap } from 'rxjs';
 
 @Injectable({
@@ -9,13 +9,11 @@ import { Observable, tap } from 'rxjs';
 export class PageService {
   pageUrl = 'api/pages';
 
-  constructor(private http: HttpClient) {
-    
-  }
+  constructor(private http: HttpClient) {}
 
   getAllPages(): Observable<Page[]> {
     return this.http
       .get<Page[]>(this.pageUrl)
-      .pipe(tap((data) => console.log(data)));
+      .pipe(tap((data) => console.log('page.service', data)));
   }
 }
