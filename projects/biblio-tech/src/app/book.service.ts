@@ -1,19 +1,19 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Page } from './page';
+import { Book } from './book';
 import { Observable, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class PageService {
-  pageUrl = 'api/pages';
+export class BookService {
+  bookUrl = 'api/books';
 
   constructor(private http: HttpClient) {}
 
-  getAllPages(): Observable<Page[]> {
+  getAllPages(): Observable<Book[]> {
     return this.http
-      .get<Page[]>(this.pageUrl)
+      .get<Book[]>(this.bookUrl)
       .pipe(tap((data) => console.log('page.service', data)));
   }
 }

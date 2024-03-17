@@ -1,23 +1,21 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { PageListComponent } from '../../page-list/page-list.component';
+import { BookListComponent } from '../../book-list/book-list.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet, PageListComponent],
+  imports: [CommonModule, RouterOutlet, BookListComponent],
   template: `
-  <div class="container">
-    <router-outlet></router-outlet>
-  </div>
-`,
-  styles: []
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  `,
+  styles: [],
 })
 export class AppComponent {
-  constructor() {
+  constructor() {}
 
-  }
-  
   title = 'BiblioTech';
 }

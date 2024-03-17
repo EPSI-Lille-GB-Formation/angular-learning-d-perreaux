@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-import { PAGES } from './mock-page';
+import { BOOKS } from './mock-book';
 
 @Injectable({
   providedIn: 'root',
 })
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
-    const pages = PAGES;
-    return { pages };
+    const books = BOOKS;
+    return { books };
   }
 }

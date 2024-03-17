@@ -3,7 +3,6 @@ export class Page {
         public id: number,
         public title: string,
         public content: string,
-        public book: string,
         public createdAt: Date,
         public updatedAt: Date|null
     ) {
