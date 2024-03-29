@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Book } from './book';
+import { Book } from '../models/book';
 import { Observable, tap } from 'rxjs';
 
 @Injectable({
@@ -11,9 +11,9 @@ export class BookService {
 
   constructor(private http: HttpClient) {}
 
-  getAllPages(): Observable<Book[]> {
+  getAllBooks(): Observable<Book[]> {
     return this.http
       .get<Book[]>(this.bookUrl)
-      .pipe(tap((data) => console.log('page.service', data)));
+      .pipe(tap());
   }
 }

@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BookService } from '../src/app/book.service';
-import { Book } from '../src/app/book';
-import { Page } from '../src/app/page';
+import { BookService } from '../../services/book.service';
+import { Book } from '../../models/book';
+import { Page } from '../../models/page';
 
 @Component({
   selector: 'app-page-list',
@@ -13,9 +13,9 @@ import { Page } from '../src/app/page';
       <article>
         <div>{{ book.title }}</div>
         <div>{{ book.resume }}</div>
-      <div *ngFor="let page of book.pages">
-        <div>{{ page.content }}</div>
-      </div>
+        <div *ngFor="let page of book.pages">
+          <div>{{ page.content }}</div>
+        </div>
       </article>
     </ng-container> `,
   styles: [],
@@ -26,6 +26,6 @@ export class BookListComponent {
   constructor(private bookService: BookService) {}
 
   ngOnInit() {
-    this.bookService.getAllPages().subscribe((data) => this.books = data);
+    this.bookService.getAllBooks().subscribe(data => this.books = data);
   }
 }
