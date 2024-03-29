@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 import { UserService } from '../../services/user.service';
 import { User } from '../../models/user';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-user-list',
   standalone: true,
   imports: [CommonModule],
-  template: `<h1> UTILISATEURS </h1>
-
+  template: `
   <ng-container *ngFor="let user of users">
     <article> 
       <div> {{ user.id}} </div>
@@ -20,10 +20,14 @@ import { User } from '../../models/user';
 })
 export class UserListComponent {
   users: User[] = [];
+  title = 'UTILISATEURS';
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    public titleService: Title) {}
 
   ngOnInit() {
     this.userService.getAllUsers().subscribe(data => this.users = data);
+    this.titleService.setTitle(this.title);
   }
 }

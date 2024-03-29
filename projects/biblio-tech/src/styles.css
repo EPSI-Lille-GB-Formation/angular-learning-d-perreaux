@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+    color: #0065FC;
+}
+
+app-layout{
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+}

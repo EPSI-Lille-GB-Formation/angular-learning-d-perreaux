@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BookService } from '../../services/book.service';
+import { Title } from '@angular/platform-browser';
 import { Book } from '../../models/book';
 import { Page } from '../../models/page';
 
@@ -8,7 +9,7 @@ import { Page } from '../../models/page';
   selector: 'app-page-list',
   standalone: true,
   imports: [CommonModule],
-  template: `<h1 class="xxl">Biblio Tech</h1>
+  template: `
     <ng-container *ngFor="let book of books">
       <article>
         <div>{{ book.title }}</div>
@@ -21,11 +22,15 @@ import { Page } from '../../models/page';
   styles: [],
 })
 export class BookListComponent {
+  title = 'LIVRES'
   books: Book[] = [];
 
-  constructor(private bookService: BookService) {}
+  constructor(
+    private bookService: BookService,
+    public titleService: Title) {}
 
   ngOnInit() {
     this.bookService.getAllBooks().subscribe(data => this.books = data);
+    this.titleService.setTitle(this.title);
   }
 }
