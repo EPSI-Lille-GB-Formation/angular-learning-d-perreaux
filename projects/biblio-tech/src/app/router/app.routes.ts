@@ -8,8 +8,8 @@ export const routes: Routes = [
   { path: '', 
   component: LayoutComponent,
   children: [
-    {path: '', component: BookListComponent, data: { title: 'COLLECTION DE LIVRES'}},
-    {path: 'users', component: UserListComponent, data: {title: 'UTILISATEURS'}}
+    {path: 'livres', component: BookListComponent},
+    {path: 'users', component: UserListComponent}
   ]},
 ];
 
