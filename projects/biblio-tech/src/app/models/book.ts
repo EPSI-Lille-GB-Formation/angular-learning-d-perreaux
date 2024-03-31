@@ -2,7 +2,7 @@ import { Page } from './page';
 
 export class Book {
   constructor(
-    public id: number,
+    public id: number | null,
     public title: string,
     public resume: string,
     public createdAt: Date,

@@ -22,12 +22,5 @@ import { BookListComponent } from './components/book-list/book-list.component';
   `],
 })
 export class AppComponent {
-  title= 'BiblioTech';
-
-  constructor(private titleService: Title) {}
-
-  ngOnInit(){
-    this.titleService.setTitle(this.title);
-  }
 
 }
