@@ -20,7 +20,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class UserListComponent {
   users: User[] = [];
-  title = 'UTILISATEURS';
+  title = 'Utilisateurs';
 
   constructor(
     private userService: UserService,

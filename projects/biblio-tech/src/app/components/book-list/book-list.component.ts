@@ -9,28 +9,52 @@ import { Page } from '../../models/page';
   selector: 'app-page-list',
   standalone: true,
   imports: [CommonModule],
-  template: `
+  template: ` <div class="books-grid-container">
     <ng-container *ngFor="let book of books">
-      <article>
-        <div>{{ book.title }}</div>
-        <div>{{ book.resume }}</div>
-        <div *ngFor="let page of book.pages">
-          <div>{{ page.content }}</div>
-        </div>
-      </article>
-    </ng-container> `,
-  styles: [],
+      <a>
+        <article>
+          <div>{{ book.title }}</div>
+          <div>{{ book.resume }}</div>
+          <div *ngFor="let page of book.pages">
+            <div>{{ page.content }}</div>
+          </div>
+        </article>
+      </a>
+    </ng-container>
+  </div>`,
+  styles: [
+    `
+    .books-grid-container {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 20px;
+      margin: auto;
+      max-width: 1000px;
+    }
+
+    a {
+      text-decoration: none;
+      color: #0000ff;
+
+    }
+    
+    article {
+      width: 250px;
+      height: 350px;
+      border-radius: 0 25px 25px 0;
+    }
+    `,
+  ],
 })
 export class BookListComponent {
-  title = 'LIVRES'
+  title = 'Livres';
   books: Book[] = [];
 
-  constructor(
-    private bookService: BookService,
-    public titleService: Title) {}
+  constructor(private bookService: BookService, public titleService: Title) {}
 
   ngOnInit() {
-    this.bookService.getAllBooks().subscribe(data => this.books = data);
+    this.bookService.getAllBooks().subscribe((data) => (this.books = data));
     this.titleService.setTitle(this.title);
   }
 }

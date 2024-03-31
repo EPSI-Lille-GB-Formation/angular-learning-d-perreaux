@@ -5,15 +5,15 @@ import { BookService } from '../../services/book.service';
 import { Book } from '../../models/book';
 import { NgForm } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-book-form',
   standalone: true,
   imports: [CommonModule, FormsModule, RouterModule],
   template: `
-  <a routerLink="/books">Voir les livres</a>
   <form (ngSubmit)="onSubmit(form)" #form="ngForm">
-    <label for="title">Title</label>
+    <label for="title">Titre</label>
     <input type="text" id="title" required [(ngModel)]="book.title" name="title">
   
     <label for="resume">Résumé</label>
@@ -22,14 +22,24 @@ import { Router, RouterModule } from '@angular/router';
   </form>
   
   `,
-  styles: []
+  styles: [
+    `form {
+      margin: 20px;
+    }`
+  ]
 })
 export class BookFormComponent {
+  title = "Créer un livre"
   book = new Book(null , "", "", new Date(), null, []);
 
   constructor(
     private bookService: BookService, 
-    private router: Router) {}
+    private router: Router,
+    public titleService: Title) {}
+
+  ngOnInit(){
+    this.titleService.setTitle(this.title);
+  }
 
   onSubmit(form: NgForm) {
     if (form.valid) {
