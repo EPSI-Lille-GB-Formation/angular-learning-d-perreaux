@@ -1,18 +1,27 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterModule } from '@angular/router';
 import { Title } from '@angular/platform-browser';
+import { AuthService } from '../../services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   template: `<header>
-    <div id="page-title" class="header-element">{{ titleService.getTitle() }}</div>
-    <div class="auth-elements">
-      <div class="header-element">Créer un compte</div>
-      <div class="header-element">Se connecter</div>
+    <div id="page-title" class="header-element">
+      {{ titleService.getTitle() }}
     </div>
+    <div *ngIf="isLoggedIn; else loggedOutTemplate">
+    <a (click)="signOut()">Se déconnecter</a>
+  </div>
+  <ng-template #loggedOutTemplate>
+    <div class="auth-elements">
+      <a routerLink="/users/sign-up" class="header-element">Créer un compte</a>
+      <a routerLink="/users/sign-in" class="header-element">Se connecter</a>
+    </div>
+  </ng-template>
   </header>`,
   styles: [
     `
@@ -43,18 +52,35 @@ import { Title } from '@angular/platform-browser';
       .header-element {
         padding: 0 15px;
       }
+
+      a {
+        text-decoration: none;
+      }
     `,
   ],
 })
-export class HeaderComponent {
-
+export class HeaderComponent implements OnDestroy {
+  isLoggedIn: boolean = false;
+  private subscription: Subscription;
 
   constructor(
-    private router: Router, 
+    private router: Router,
     private route: ActivatedRoute,
-    public titleService: Title) {}
+    public titleService: Title, 
+    public authService: AuthService
+  ) {
+    this.subscription = this.authService.currentUser.subscribe(user => {
+      this.isLoggedIn = !!user;
+    })
+  }
 
-  ngOnInit() {
+  ngOnInit() {}
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
+  signOut() {
+    this.authService.signOut();
   }
 }
